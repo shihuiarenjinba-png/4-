@@ -1,0 +1,5 @@
+{
+  "name": "大学受験対策ポータル",
+  "description": "過去問データベースへのリンクとAI作成問題の管理を行うポータルサイト",
+  "requestFramePermissions": []
+}
