@@ -31,64 +31,67 @@ interface AppState {
 // ════════════════════════════════════════
 // DATA
 // ════════════════════════════════════════
+// パスナビ正規URL（obunsha.co.jp）
+const PN_BASE = "https://passnavi.obunsha.co.jp/kakomon/center/";
+
 const SUBJ_MASTER: Record<string, SubjMeta> = {
   "英語リーディング": { label: "英語（リーディング）", max: 100, group: "英語",
-    toshinKeys: { 2025: "reading_question_4", 2024: "reading_question_3", 2023: "reading_question_2", 2022: "reading_question_1" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/eigo/" },
+    toshinKeys: { 2025: "reading_question_4", 2024: "reading_question_3", 2023: "reading_question_2", 2022: "reading_question_1", 2021: "reading_question_0" },
+    pnUrl: PN_BASE + "eigo/" },
   "英語リスニング": { label: "英語（リスニング）", max: 100, group: "英語",
-    toshinKeys: { 2025: "listening_question_4", 2024: "listening_question_3", 2023: "listening_question_2", 2022: "listening_question_1" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/eigo/" },
+    toshinKeys: { 2025: "listening_question_4", 2024: "listening_question_3", 2023: "listening_question_2", 2022: "listening_question_1", 2021: "listening_question_0" },
+    pnUrl: PN_BASE + "eigo/" },
   "数学IA": { label: "数学ⅠA", max: 100, group: "数学",
-    toshinKeys: { 2025: "suugaku-1a_question_4", 2024: "suugaku-1a_question_3", 2023: "suugaku-1a_question_2", 2022: "suugaku-1a_question_1" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/sugaku/" },
+    toshinKeys: { 2025: "suugaku-1a_question_4", 2024: "suugaku-1a_question_3", 2023: "suugaku-1a_question_2", 2022: "suugaku-1a_question_1", 2021: "suugaku-1a_question_0" },
+    pnUrl: PN_BASE + "sugaku/" },
   "数学IIB": { label: "数学ⅡBC", max: 100, group: "数学",
-    toshinKeys: { 2025: "suugaku2bc_question_4", 2024: "suugaku2bc_question_3", 2023: "suugaku2bc_question_2", 2022: "suugaku2bc_question_1" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/sugaku/" },
+    toshinKeys: { 2025: "suugaku2bc_question_4", 2024: "suugaku2bc_question_3", 2023: "suugaku2bc_question_2", 2022: "suugaku2bc_question_1", 2021: "suugaku2bc_question_0" },
+    pnUrl: PN_BASE + "sugaku/" },
   "国語": { label: "国語", max: 200, group: "国語",
-    toshinKeys: { 2025: "kokugo_question_4", 2024: "kokugo_question_3", 2023: "kokugo_question_2", 2022: "kokugo_question_1" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/kokugo/" },
+    toshinKeys: { 2025: "kokugo_question_4", 2024: "kokugo_question_3", 2023: "kokugo_question_2", 2022: "kokugo_question_1", 2021: "kokugo_question_0" },
+    pnUrl: PN_BASE + "kokugo/" },
   "情報I": { label: "情報Ⅰ", max: 100, group: "情報",
     toshinKeys: { 2025: "jouhou1_question_2", 2024: "jouhou1_question_1" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/" },
+    pnUrl: PN_BASE },
   "物理基礎": { label: "物理基礎", max: 50, group: "理科（基礎）",
-    toshinKeys: { 2025: "butsuri-kiso_question_1", 2024: "butsuri-kiso_question_0" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/butsuri/" },
+    toshinKeys: { 2025: "butsuri-kiso_question_1", 2024: "butsuri-kiso_question_0", 2023: "butsuri-kiso_question_0", 2022: "butsuri-kiso_question_0" },
+    pnUrl: PN_BASE + "butsuri/" },
   "化学基礎": { label: "化学基礎", max: 50, group: "理科（基礎）",
-    toshinKeys: { 2025: "kagaku-kiso_question_1", 2024: "kagaku-kiso_question_0" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/kagaku/" },
+    toshinKeys: { 2025: "kagaku-kiso_question_1", 2024: "kagaku-kiso_question_0", 2023: "kagaku-kiso_question_0", 2022: "kagaku-kiso_question_0" },
+    pnUrl: PN_BASE + "kagaku/" },
   "生物基礎": { label: "生物基礎", max: 50, group: "理科（基礎）",
-    toshinKeys: { 2025: "seibutsu-kiso_question_1", 2024: "seibutsu-kiso_question_0" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/seibutsu/" },
+    toshinKeys: { 2025: "seibutsu-kiso_question_1", 2024: "seibutsu-kiso_question_0", 2023: "seibutsu-kiso_question_0", 2022: "seibutsu-kiso_question_0" },
+    pnUrl: PN_BASE + "seibutsu/" },
   "地学基礎": { label: "地学基礎", max: 50, group: "理科（基礎）",
-    toshinKeys: { 2025: "chigaku-kiso_question_1", 2024: "chigaku-kiso_question_0" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/chigaku/" },
+    toshinKeys: { 2025: "chigaku-kiso_question_1", 2024: "chigaku-kiso_question_0", 2023: "chigaku-kiso_question_0", 2022: "chigaku-kiso_question_0" },
+    pnUrl: PN_BASE + "chigaku/" },
   "物理": { label: "物理", max: 100, group: "理科（発展）",
-    toshinKeys: { 2025: "butsuri_question_1", 2024: "butsuri_question_0" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/butsuri/" },
+    toshinKeys: { 2025: "butsuri_question_1", 2024: "butsuri_question_0", 2023: "butsuri_question_0", 2022: "butsuri_question_0" },
+    pnUrl: PN_BASE + "butsuri/" },
   "化学": { label: "化学", max: 100, group: "理科（発展）",
-    toshinKeys: { 2025: "kagaku_question_1", 2024: "kagaku_question_0" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/kagaku/" },
+    toshinKeys: { 2025: "kagaku_question_1", 2024: "kagaku_question_0", 2023: "kagaku_question_0", 2022: "kagaku_question_0" },
+    pnUrl: PN_BASE + "kagaku/" },
   "生物": { label: "生物", max: 100, group: "理科（発展）",
-    toshinKeys: { 2025: "seibutsu_question_1", 2024: "seibutsu_question_0" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/seibutsu/" },
+    toshinKeys: { 2025: "seibutsu_question_1", 2024: "seibutsu_question_0", 2023: "seibutsu_question_0", 2022: "seibutsu_question_0" },
+    pnUrl: PN_BASE + "seibutsu/" },
   "地学": { label: "地学", max: 100, group: "理科（発展）",
-    toshinKeys: { 2025: "chigaku_question_1", 2024: "chigaku_question_0" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/chigaku/" },
+    toshinKeys: { 2025: "chigaku_question_1", 2024: "chigaku_question_0", 2023: "chigaku_question_0", 2022: "chigaku_question_0" },
+    pnUrl: PN_BASE + "chigaku/" },
   "地理総合・地理探究": { label: "地理総合、地理探究", max: 100, group: "地歴公民",
-    toshinKeys: { 2025: "chiri-tankyu_question_1", 2024: "chiri-tankyu_question_0" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/chiri/" },
+    toshinKeys: { 2025: "chiri-tankyu_question_1", 2024: "chiri-tankyu_question_0", 2023: "chiri-tankyu_question_0" },
+    pnUrl: PN_BASE + "chiri/" },
   "歴史総合・日本史探究": { label: "歴史総合、日本史探究", max: 100, group: "地歴公民",
-    toshinKeys: { 2025: "nihonshi-tankyu_question_1", 2024: "nihonshi-tankyu_question_0" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/chiri/" },
+    toshinKeys: { 2025: "nihonshi-tankyu_question_1", 2024: "nihonshi-tankyu_question_0", 2023: "nihonshi-tankyu_question_0" },
+    pnUrl: PN_BASE + "chiri/" },
   "歴史総合・世界史探究": { label: "歴史総合、世界史探究", max: 100, group: "地歴公民",
-    toshinKeys: { 2025: "sekaishi-tankyu_question_1", 2024: "sekaishi-tankyu_question_0" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/chiri/" },
+    toshinKeys: { 2025: "sekaishi-tankyu_question_1", 2024: "sekaishi-tankyu_question_0", 2023: "sekaishi-tankyu_question_0" },
+    pnUrl: PN_BASE + "chiri/" },
   "公共・倫理": { label: "公共、倫理", max: 100, group: "地歴公民",
-    toshinKeys: { 2025: "koukyo-rinri_question_1" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/rinri/" },
+    toshinKeys: { 2025: "koukyo-rinri_question_1", 2024: "koukyo-rinri_question_0" },
+    pnUrl: PN_BASE + "rinri/" },
   "公共・政治経済": { label: "公共、政治・経済", max: 100, group: "地歴公民",
-    toshinKeys: { 2025: "koukyo-seikei_question_1" },
-    pnUrl: "https://passnavi.evidus.com/exam-info/center/rinri/" },
+    toshinKeys: { 2025: "koukyo-seikei_question_1", 2024: "koukyo-seikei_question_0" },
+    pnUrl: PN_BASE + "rinri/" },
 };
 
 const GROUP_COLOR: Record<string, string> = {
@@ -108,7 +111,7 @@ const CHECKS = [
   { id: "c8", t: "AI問題タブで10問以上解く" },
 ];
 
-const EXAM_YEARS = [2025, 2024, 2023, 2022];
+const EXAM_YEARS = [2025, 2024, 2023, 2022, 2021];
 const DAYS_JA = ["日", "月", "火", "水", "木", "金", "土"];
 
 const DEFAULT_STATE: AppState = {
@@ -174,14 +177,15 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--t1);
 .nb{padding:10px 14px;border:none;background:transparent;color:var(--t2);cursor:pointer;font-size:12px;font-weight:500;font-family:'Noto Sans JP',sans-serif;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s}
 .nb:hover{color:var(--t1)}
 .nb.on{color:var(--gr);border-bottom-color:var(--gr)}
-.main{padding:22px 18px;max-width:1060px;margin:0 auto}
+.main{padding:16px 14px;max-width:1060px;margin:0 auto}
+@media(max-width:480px){.main{padding:12px 10px}}
 .card{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:16px;margin-bottom:14px}
 .ct{font-size:13px;font-weight:700;margin-bottom:3px}
 .cs{font-size:11px;color:var(--t2);margin-bottom:12px}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 @media(max-width:680px){.g2,.g4{grid-template-columns:1fr}}
-@media(min-width:681px) and (max-width:900px){.g4{grid-template-columns:1fr 1fr}}
+@media(min-width:481px) and (max-width:900px){.g4{grid-template-columns:1fr 1fr}}
 .sc{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:14px;position:relative;overflow:hidden}
 .sc::after{content:'';position:absolute;top:0;left:0;right:0;height:2px}
 .sc.g::after{background:var(--gr)}.sc.o::after{background:var(--or)}.sc.b::after{background:var(--bl)}.sc.p::after{background:var(--pu)}
@@ -217,9 +221,9 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--t1);
 .sh{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:1px;padding-bottom:7px;margin-bottom:7px;border-bottom:1px solid var(--b1)}
 .sr{display:flex;align-items:center;padding:9px 0;border-bottom:1px solid var(--b1);gap:8px;font-size:12px}
 .sr:last-child{border-bottom:none}
-.ci{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:1px solid var(--b1);cursor:pointer;user-select:none;font-size:12px}
+.ci{display:flex;align-items:flex-start;gap:9px;padding:12px 0;border-bottom:1px solid var(--b1);cursor:pointer;user-select:none;font-size:12px;-webkit-tap-highlight-color:transparent}
 .ci:last-child{border-bottom:none}
-.ci input[type=checkbox]{width:14px;height:14px;flex-shrink:0;accent-color:var(--gr);margin-top:2px}
+.ci input[type=checkbox]{width:18px;height:18px;flex-shrink:0;accent-color:var(--gr);margin-top:1px;cursor:pointer}
 .ci.done{color:var(--t3);text-decoration:line-through}
 .li{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--b1);font-size:12px}
 .li:last-child{border-bottom:none}
@@ -536,7 +540,7 @@ function ExamTab({ S, update, getSubjs }: { S: AppState; update: any; getSubjs: 
             【調査書】(100点)
           </div>
           <div className="lp">
-            <a className="lb pn" href="https://passnavi.evidus.com/search/" target="_blank" rel="noopener noreferrer">
+            <a className="lb pn" href="https://passnavi.obunsha.co.jp/kakomon/" target="_blank" rel="noopener noreferrer">
               <div><div className="ln">パスナビ｜大学別 過去問検索</div><div className="ld2">大学名で検索して各校の二次試験へ</div></div>
               <div className="la">↗</div>
             </a>
@@ -597,28 +601,33 @@ function ExamTab({ S, update, getSubjs }: { S: AppState; update: any; getSubjs: 
 // ════════════════════════════════════════
 function RefTab() {
   const refs = [
-    { tag: "tag-ap", title: "Flips — 共通テスト英単語", desc: "共通テストによく出る英単語を収録。部活の移動中・すき間時間に最適。", href: "https://apps.apple.com/jp/app/flips-%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E3%81%A7%E3%82%88%E3%81%8F%E5%87%BA%E3%82%8B%E8%8B%B1%E5%8D%98%E8%AA%9E%E3%82%92%E5%8F%8E%E9%8C%B2/id6752226363", linkLabel: "App Storeで開く ↗" },
-    { tag: "tag-en", title: "東進 過去問データベース", desc: "完全無料。全科目・最大31年分が閲覧・PDF保存可。会員登録のみ。", href: "https://www.toshin-kakomon.com/", linkLabel: "サイトを開く ↗" },
-    { tag: "tag-en", title: "パスナビ（旺文社）", desc: "解説・英語全訳付き。170大学以上・5年分を無料閲覧。解説重視ならこちら。", href: "https://passnavi.evidus.com/", linkLabel: "サイトを開く ↗" },
-    { tag: "tag-ma", title: "Khan Academy（数学・理科）", desc: "無料で無限演習。基礎固めに最適。日本語版あり。", href: "https://ja.khanacademy.org/", linkLabel: "サイトを開く ↗" },
-    { tag: "tag-ap", title: "Quizlet", desc: "英単語・暗記系に最強。自作単語帳可。無料プランあり。", href: "https://quizlet.com/ja", linkLabel: "サイトを開く ↗" },
-    { tag: "tag-sc", title: "マナビジョン（ベネッセ）", desc: "国公立大の過去問が解説付きで無料閲覧可能。120大学以上対応。", href: "https://manabi.benesse.ne.jp/", linkLabel: "サイトを開く ↗" },
-    { tag: "tag-en", title: "NHK語学・基礎英語", desc: "リスニング・基礎英語定番。アプリ「NHK語学」で無料受講。", href: "https://www.nhk.or.jp/gogaku/", linkLabel: "サイトを開く ↗" },
-    { tag: "tag-ap", title: "ただよび（YouTube）", desc: "無料で授業動画が豊富。「ただよび」「武田塾」など予備校チャンネル。", href: "https://www.youtube.com/@tadayobi", linkLabel: "YouTubeを開く ↗" },
+    { tag: "tag-ap", tagLabel: "📱 アプリ", title: "Flips — 共通テスト英単語", desc: "共通テストによく出る英単語を収録。部活の移動中・すき間時間に最適。", href: "https://apps.apple.com/jp/app/flips-%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E3%81%A7%E3%82%88%E3%81%8F%E5%87%BA%E3%82%8B%E8%8B%B1%E5%8D%98%E8%AA%9E%E3%82%92%E5%8F%8E%E9%8C%B2/id6752226363", linkLabel: "App Storeで開く ↗" },
+    { tag: "tag-en", tagLabel: "過去問", title: "東進 過去問データベース", desc: "完全無料。全科目・最大31年分が閲覧・PDF保存可。会員登録のみ。", href: "https://www.toshin-kakomon.com/", linkLabel: "サイトを開く ↗" },
+    { tag: "tag-en", tagLabel: "過去問", title: "パスナビ（旺文社）", desc: "解説・英語全訳付き。170大学以上・5年分を無料閲覧。解説重視ならこちら。", href: "https://passnavi.obunsha.co.jp/", linkLabel: "サイトを開く ↗" },
+    { tag: "tag-sc", tagLabel: "理科・社会", title: "マナビジョン（ベネッセ）", desc: "国公立大の過去問が解説付きで無料閲覧可能。120大学以上対応。", href: "https://manabi.benesse.ne.jp/", linkLabel: "サイトを開く ↗" },
+    { tag: "tag-ap", tagLabel: "📱 アプリ", title: "スタディサプリ", desc: "映像授業で基礎から応用まで。共通テスト対策講座が充実。", href: "https://studysapuri.jp/", linkLabel: "サイトを開く ↗" },
   ];
+
   return (
     <div>
       <div className="stitle">参考書・学習ツール</div>
-      <div className="ssub">フェーズ別おすすめリソース</div>
+      <div className="ssub">大学受験向けおすすめリソース</div>
       <div className="rg">
         {refs.map(r => (
           <div key={r.title} className="rc">
-            <span className={`rt ${r.tag}`}>{r.tag === "tag-ap" ? "📱 アプリ" : r.tag === "tag-en" ? "英語" : r.tag === "tag-ma" ? "数学" : "理科・社会"}</span>
+            <span className={`rt ${r.tag}`}>{r.tagLabel}</span>
             <div className="rl">{r.title}</div>
             <div className="rd">{r.desc}</div>
             <a className="ra" href={r.href} target="_blank" rel="noopener noreferrer">{r.linkLabel}</a>
           </div>
         ))}
+        {/* Google AI API枠 */}
+        <div className="rc" style={{ border: "1px dashed var(--bl)", background: "var(--bld)" }}>
+          <span className="rt" style={{ background: "var(--bld)", color: "var(--bl)" }}>🤖 AI</span>
+          <div className="rl" style={{ color: "var(--bl)" }}>Google AI Studio（準備中）</div>
+          <div className="rd">Gemini APIを活用した学習支援機能をここに追加予定。APIキーを設定タブで設定してください。</div>
+          <span style={{ fontSize: 11, color: "var(--t3)", marginTop: 3 }}>設定タブ → Google AI API欄</span>
+        </div>
       </div>
     </div>
   );
@@ -1163,20 +1172,31 @@ function WeakTab({ S, update }: { S: AppState; update: any }) {
 // PLAN TAB
 // ════════════════════════════════════════
 function PlanTab() {
-  const weekly = [
-    { day: "月・水", subj: "数学", content: "教科書例題 or 問題集1テーマ（40分）" },
-    { day: "火・木", subj: "英語", content: "文法 or 長文読解1題（40分）＋Flips単語（10分）" },
-    { day: "金", subj: "理科・社会", content: "授業の復習・用語整理（40分）" },
-    { day: "土日どちらか", subj: "総復習", content: "間違えた問題の見直し（30〜60分）" },
-    { day: "部活日", subj: "すき間時間", content: "Flipsで単語10語（移動中）＋リスニング（5分）" },
-  ];
-  const daily = [
+  const [activeDayType, setActiveDayType] = useState<"club" | "noclub">("club");
+
+  const dailyClub = [
     { time: "〜部活前", act: "Flips起動（5分）英単語チェック" },
     { time: "部活中（移動）", act: "リスニング音声を聴き流し" },
     { time: "帰宅後", act: "休憩・食事を最優先" },
     { time: "21:00〜", act: "余裕があれば問題1〜2問のみ" },
     { time: "寝る前（5分）", act: "暗記系の復習・翌日の準備" },
   ];
+  const dailyNoClub = [
+    { time: "午前中（〜12時）", act: "数学 or 理科 集中演習（60〜90分）" },
+    { time: "昼食・休憩", act: "Flips単語チェック（10分）" },
+    { time: "午後（13〜15時）", act: "英語 長文読解 or 文法（60分）" },
+    { time: "15〜17時", act: "苦手科目の問題集（60分）" },
+    { time: "夕食・休憩", act: "しっかり休む（脳を回復）" },
+    { time: "20〜22時", act: "今日の復習 + 明日の準備（60分）" },
+  ];
+
+  const studyTimeSummary = [
+    { phase: "Phase 1（部活期間）", club: "30〜60分/日", noClub: "3〜4時間/日", total: "週計 10〜20時間目標" },
+    { phase: "Phase 2（夏休み）", club: "—", noClub: "5〜6時間/日", total: "週計 35〜42時間目標" },
+    { phase: "Phase 3（秋）", club: "—", noClub: "4〜5時間/日", total: "週計 28〜35時間目標" },
+    { phase: "Phase 4（直前）", club: "—", noClub: "6〜8時間/日", total: "週計 42〜56時間目標" },
+  ];
+
   const monthly = [
     "Flipsで英単語100語以上をマスター",
     "数ⅠAの基礎問題集を最低20問解く",
@@ -1184,38 +1204,81 @@ function PlanTab() {
     "学習記録を週5日以上つける",
     "模試の目標スコアを設定タブに入力する",
   ];
+
   return (
     <div>
-      <div className="stitle">週間学習計画</div>
-      <div className="ssub">現在のフェーズ（Phase 1）に合わせた週間スケジュール</div>
-      <div className="g2">
-        <div className="card">
-          <div className="ct">📅 今週の計画（Phase 1）</div>
-          <div className="cs">部活あり週のおすすめスケジュール</div>
-          {weekly.map(r => (
-            <div key={r.day} className="sr">
-              <span style={{ minWidth: 100, fontSize: 12, color: "var(--t2)" }}>{r.day}</span>
-              <div>
-                <div style={{ fontSize: 12, fontWeight: 600, color: "var(--gr)" }}>{r.subj}</div>
-                <div style={{ fontSize: 11, color: "var(--t2)" }}>{r.content}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="card">
-          <div className="ct">⏰ 部活がある日のタイムテーブル</div>
-          <div className="cs">理想の1日スケジュール</div>
-          {daily.map(r => (
-            <div key={r.time} className="sr">
-              <span style={{ minWidth: 100, fontSize: 11, fontFamily: "'DM Mono',monospace", color: "var(--t3)" }}>{r.time}</span>
-              <span style={{ fontSize: 12 }}>{r.act}</span>
-            </div>
-          ))}
+      <div className="stitle">学習計画</div>
+      <div className="ssub">フェーズ別の総学習時間目標と1日のスケジュール</div>
+
+      {/* 総学習時間 */}
+      <div className="card">
+        <div className="ct">⏱️ フェーズ別 総学習時間の目安</div>
+        <div className="cs">現在はPhase 1（部活期間）— まずは習慣化を最優先に</div>
+        <div style={{ overflowX: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+            <thead>
+              <tr style={{ borderBottom: "1px solid var(--b1)" }}>
+                {["フェーズ", "部活あり日", "部活なし日", "週の目標"].map(h => (
+                  <th key={h} style={{ padding: "6px 8px", textAlign: "left", color: "var(--t2)", fontWeight: 600, fontSize: 10, textTransform: "uppercase", letterSpacing: ".5px" }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {studyTimeSummary.map((r, i) => (
+                <tr key={i} style={{ borderBottom: "1px solid var(--b1)", background: i === 0 ? "var(--grd)" : "transparent" }}>
+                  <td style={{ padding: "8px", color: i === 0 ? "var(--gr)" : "var(--t1)", fontWeight: i === 0 ? 700 : 400 }}>{r.phase}</td>
+                  <td style={{ padding: "8px", fontFamily: "'DM Mono',monospace", color: "var(--t2)" }}>{r.club}</td>
+                  <td style={{ padding: "8px", fontFamily: "'DM Mono',monospace", color: "var(--t2)" }}>{r.noClub}</td>
+                  <td style={{ padding: "8px", color: "var(--t2)", fontSize: 11 }}>{r.total}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
-      <div className="card" style={{ marginTop: 14 }}>
+
+      {/* タイムテーブル切替 */}
+      <div className="card">
+        <div className="ct">🗓️ 1日のタイムテーブル</div>
+        <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
+          <button
+            className={`btn ${activeDayType === "club" ? "btn-g" : "btn-ghost"}`}
+            onClick={() => setActiveDayType("club")}
+            style={{ flex: 1 }}
+          >⚽ 部活がある日</button>
+          <button
+            className={`btn ${activeDayType === "noclub" ? "btn-g" : "btn-ghost"}`}
+            onClick={() => setActiveDayType("noclub")}
+            style={{ flex: 1 }}
+          >📚 部活がない日</button>
+        </div>
+        {activeDayType === "club" ? (
+          <>
+            <div className="cs" style={{ marginBottom: 8 }}>疲れを前提に「ゼロにしない」が目標。無理は禁物。</div>
+            {dailyClub.map(r => (
+              <div key={r.time} className="sr">
+                <span style={{ minWidth: 110, fontSize: 11, fontFamily: "'DM Mono',monospace", color: "var(--t3)" }}>{r.time}</span>
+                <span style={{ fontSize: 12 }}>{r.act}</span>
+              </div>
+            ))}
+          </>
+        ) : (
+          <>
+            <div className="cs" style={{ marginBottom: 8 }}>部活なし日は3〜4時間が目標。集中とメリハリを意識。</div>
+            {dailyNoClub.map(r => (
+              <div key={r.time} className="sr">
+                <span style={{ minWidth: 110, fontSize: 11, fontFamily: "'DM Mono',monospace", color: "var(--bl)" }}>{r.time}</span>
+                <span style={{ fontSize: 12 }}>{r.act}</span>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
+
+      {/* 今月の目標 */}
+      <div className="card">
         <div className="ct">📊 今月の目標</div>
-        <div className="cs">今月達成したい目標リスト</div>
+        <div className="cs">今月達成したい目標リスト（Phase 1）</div>
         {monthly.map(g => (
           <div key={g} className="sr" style={{ padding: "8px 0" }}>
             <span style={{ color: "var(--gr)", marginRight: 8 }}>›</span>
@@ -1233,9 +1296,11 @@ function PlanTab() {
 function SettingsTab({ S, update, getSubjs }: { S: AppState; update: any; getSubjs: () => string[] }) {
   const [school, setSchool] = useState(S.school);
   const [goalInputs, setGoalInputs] = useState<Record<string, string>>({});
+  // ローカルstate で即時チェック反映 → 保存ボタンでS反映
+  const [localSelected, setLocalSelected] = useState<string[]>(S.selectedSubjs);
 
   const saveSettings = () => {
-    update((prev: AppState) => ({ ...prev, school }));
+    update((prev: AppState) => ({ ...prev, school, selectedSubjs: localSelected }));
     alert("✅ 設定を保存しました！");
   };
   const saveGoals = () => {
@@ -1254,13 +1319,12 @@ function SettingsTab({ S, update, getSubjs }: { S: AppState; update: any; getSub
     setGoalInputs({});
     alert("✅ 目標スコアを保存しました！");
   };
-  const toggleSubj = (key: string, checked: boolean) => {
-    update((prev: AppState) => ({
-      ...prev,
-      selectedSubjs: checked
-        ? [...prev.selectedSubjs, key]
-        : prev.selectedSubjs.filter(k => k !== key),
-    }));
+
+  // チェック操作はlocalStateだけ更新（即時・軽量）
+  const toggleSubj = (key: string) => {
+    setLocalSelected(prev =>
+      prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]
+    );
   };
 
   // Group subjects
@@ -1292,41 +1356,83 @@ function SettingsTab({ S, update, getSubjs }: { S: AppState; update: any; getSub
         </div>
 
         <div className="card">
-          <div className="ct">🎯 目標スコア設定</div>
-          <div className="cs">各科目の目標点を設定すると分析に反映（満点は科目別に自動設定）</div>
-          {getSubjs().map(key => {
-            const m = SUBJ_MASTER[key]; if (!m) return null;
-            return (
-              <div key={key} className="sr">
-                <span style={{ flex: 1, fontSize: 11 }}>{m.label}</span>
-                <input type="text" value={goalInputs[key] || S.goals[key] || ""} onChange={e => setGoalInputs(p => ({ ...p, [key]: e.target.value }))}
-                  placeholder="—" style={{ width: 60, textAlign: "right", padding: "4px 6px", fontSize: 12, fontFamily: "'DM Mono',monospace" }} />
-                <span style={{ fontSize: 10, color: "var(--t3)" }}>/{m.max}</span>
-              </div>
-            );
-          })}
-          <button className="btn btn-g" style={{ marginTop: 10 }} onClick={saveGoals}>保存</button>
+          <div className="ct">🤖 Google AI API（準備中）</div>
+          <div className="cs">Gemini APIキーを入力するとAI機能が拡張されます</div>
+          <div style={{ marginBottom: 8 }}>
+            <div className="fl">Google AI Studio APIキー</div>
+            <input
+              type="password"
+              placeholder="AIzaSy... （Google AI Studioで取得）"
+              style={{ fontSize: 11 }}
+              onChange={() => {}}
+            />
+          </div>
+          <a
+            href="https://aistudio.google.com/app/apikey"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ fontSize: 11, color: "var(--bl)", textDecoration: "none" }}
+          >
+            → Google AI StudioでAPIキーを取得 ↗
+          </a>
+          <div style={{ marginTop: 10, padding: 10, background: "var(--s2)", borderRadius: "var(--rsm)", fontSize: 11, color: "var(--t3)" }}>
+            ※ 現在はAnthropicのClaude APIで動作中。Gemini APIの統合は今後実装予定。
+          </div>
         </div>
       </div>
 
       <div className="card" style={{ marginTop: 14 }}>
+        <div className="ct">🎯 目標スコア設定</div>
+        <div className="cs">各科目の目標点を設定すると分析に反映（満点は科目別に自動設定）</div>
+        {getSubjs().map(key => {
+          const m = SUBJ_MASTER[key]; if (!m) return null;
+          return (
+            <div key={key} className="sr">
+              <span style={{ flex: 1, fontSize: 11 }}>{m.label}</span>
+              <input type="text" value={goalInputs[key] ?? (S.goals[key] != null ? String(S.goals[key]) : "")} onChange={e => setGoalInputs(p => ({ ...p, [key]: e.target.value }))}
+                placeholder="—" style={{ width: 60, textAlign: "right", padding: "4px 6px", fontSize: 12, fontFamily: "'DM Mono',monospace" }} />
+              <span style={{ fontSize: 10, color: "var(--t3)" }}>/{m.max}</span>
+            </div>
+          );
+        })}
+        <button className="btn btn-g" style={{ marginTop: 10 }} onClick={saveGoals}>保存</button>
+      </div>
+
+      <div className="card" style={{ marginTop: 14 }}>
         <div className="ct">📋 受験科目の選択</div>
-        <div className="cs">受験する科目にチェックを入れてください。過去問・スコア記録・分析タブすべてに反映されます。</div>
+        <div className="cs">
+          受験する科目にチェックを入れてください。
+          <span style={{ color: "var(--or)" }}>「保存」ボタンで全タブに反映されます。</span>
+        </div>
         {Object.entries(groups).map(([grp, keys]) => (
           <div key={grp} style={{ marginBottom: 14 }}>
             <div style={{ fontSize: 10, color: "var(--t3)", fontWeight: 600, textTransform: "uppercase", letterSpacing: ".8px", marginBottom: 8 }}>{grp}</div>
             {keys.map(key => {
               const m = SUBJ_MASTER[key];
-              const checked = S.selectedSubjs.includes(key);
+              const checked = localSelected.includes(key);
               return (
-                <div key={key} className="ci" onClick={() => toggleSubj(key, !checked)}>
-                  <input type="checkbox" checked={checked} onChange={() => {}} onClick={e => e.stopPropagation()} />
-                  <span>{m.label}（満点 {m.max}点）</span>
+                <div
+                  key={key}
+                  className="ci"
+                  onClick={() => toggleSubj(key)}
+                >
+                  <input
+                    type="checkbox"
+                    checked={checked}
+                    onChange={() => toggleSubj(key)}
+                    onClick={e => e.stopPropagation()}
+                  />
+                  <span style={{ color: checked ? "var(--t1)" : "var(--t3)" }}>
+                    {m.label}（満点 {m.max}点）
+                  </span>
                 </div>
               );
             })}
           </div>
         ))}
+        <button className="btn btn-g" style={{ width: "100%", marginTop: 8 }} onClick={saveSettings}>
+          ✅ 科目選択を保存して全タブに反映
+        </button>
       </div>
     </div>
   );
