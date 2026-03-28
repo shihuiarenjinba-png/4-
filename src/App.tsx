@@ -29,69 +29,173 @@ interface AppState {
 }
 
 // ════════════════════════════════════════
-// DATA
+// 過去問URLデータベース（完全版・年度別直接URL）
+// 東進: https://www.toshin.com/kyotsutest/YYYY/filename.html
+// パスナビ: https://passnavi.obunsha.co.jp/kakomon/center/科目/
 // ════════════════════════════════════════
+
+// 東進 直接URL完全データベース（年度→科目→URL）
+const TOSHIN_URLS: Record<number, Record<string, string>> = {
+  2025: {
+    "英語リーディング":     "https://www.toshin.com/kyotsutest/2025/reading_question_4.html",
+    "英語リスニング":       "https://www.toshin.com/kyotsutest/2025/listening_question_4.html",
+    "数学IA":               "https://www.toshin.com/kyotsutest/2025/suugaku-1a_question_4.html",
+    "数学IIB":              "https://www.toshin.com/kyotsutest/2025/suugaku2bc_question_4.html",
+    "国語":                 "https://www.toshin.com/kyotsutest/2025/kokugo_question_4.html",
+    "情報I":                "https://www.toshin.com/kyotsutest/2025/jouhou1_question_2.html",
+    "物理基礎":             "https://www.toshin.com/kyotsutest/2025/butsuri-kiso_question_1.html",
+    "化学基礎":             "https://www.toshin.com/kyotsutest/2025/kagaku-kiso_question_1.html",
+    "生物基礎":             "https://www.toshin.com/kyotsutest/2025/seibutsu-kiso_question_1.html",
+    "地学基礎":             "https://www.toshin.com/kyotsutest/2025/chigaku-kiso_question_1.html",
+    "物理":                 "https://www.toshin.com/kyotsutest/2025/butsuri_question_1.html",
+    "化学":                 "https://www.toshin.com/kyotsutest/2025/kagaku_question_1.html",
+    "生物":                 "https://www.toshin.com/kyotsutest/2025/seibutsu_question_1.html",
+    "地学":                 "https://www.toshin.com/kyotsutest/2025/chigaku_question_1.html",
+    "地理総合・地理探究":   "https://www.toshin.com/kyotsutest/2025/chiri-tankyu_question_1.html",
+    "歴史総合・日本史探究": "https://www.toshin.com/kyotsutest/2025/nihonshi-tankyu_question_1.html",
+    "歴史総合・世界史探究": "https://www.toshin.com/kyotsutest/2025/sekaishi-tankyu_question_1.html",
+    "公共・倫理":           "https://www.toshin.com/kyotsutest/2025/koukyo-rinri_question_1.html",
+    "公共・政治経済":       "https://www.toshin.com/kyotsutest/2025/koukyo-seikei_question_1.html",
+  },
+  2024: {
+    "英語リーディング":     "https://www.toshin.com/kyotsutest/2024/reading_question_3.html",
+    "英語リスニング":       "https://www.toshin.com/kyotsutest/2024/listening_question_3.html",
+    "数学IA":               "https://www.toshin.com/kyotsutest/2024/suugaku-1a_question_3.html",
+    "数学IIB":              "https://www.toshin.com/kyotsutest/2024/suugaku2bc_question_3.html",
+    "国語":                 "https://www.toshin.com/kyotsutest/2024/kokugo_question_3.html",
+    "情報I":                "https://www.toshin.com/kyotsutest/2024/jouhou1_question_1.html",
+    "物理基礎":             "https://www.toshin.com/kyotsutest/2024/butsuri-kiso_question_0.html",
+    "化学基礎":             "https://www.toshin.com/kyotsutest/2024/kagaku-kiso_question_0.html",
+    "生物基礎":             "https://www.toshin.com/kyotsutest/2024/seibutsu-kiso_question_0.html",
+    "地学基礎":             "https://www.toshin.com/kyotsutest/2024/chigaku-kiso_question_0.html",
+    "物理":                 "https://www.toshin.com/kyotsutest/2024/butsuri_question_0.html",
+    "化学":                 "https://www.toshin.com/kyotsutest/2024/kagaku_question_0.html",
+    "生物":                 "https://www.toshin.com/kyotsutest/2024/seibutsu_question_0.html",
+    "地学":                 "https://www.toshin.com/kyotsutest/2024/chigaku_question_0.html",
+    "地理総合・地理探究":   "https://www.toshin.com/kyotsutest/2024/chiri-tankyu_question_0.html",
+    "歴史総合・日本史探究": "https://www.toshin.com/kyotsutest/2024/nihonshi-tankyu_question_0.html",
+    "歴史総合・世界史探究": "https://www.toshin.com/kyotsutest/2024/sekaishi-tankyu_question_0.html",
+    "公共・倫理":           "https://www.toshin.com/kyotsutest/2024/koukyo-rinri_question_0.html",
+    "公共・政治経済":       "https://www.toshin.com/kyotsutest/2024/koukyo-seikei_question_0.html",
+  },
+  2023: {
+    "英語リーディング":     "https://www.toshin.com/kyotsutest/2023/reading_question_2.html",
+    "英語リスニング":       "https://www.toshin.com/kyotsutest/2023/listening_question_2.html",
+    "数学IA":               "https://www.toshin.com/kyotsutest/2023/suugaku-1a_question_2.html",
+    "数学IIB":              "https://www.toshin.com/kyotsutest/2023/suugaku2bc_question_2.html",
+    "国語":                 "https://www.toshin.com/kyotsutest/2023/kokugo_question_2.html",
+    "物理基礎":             "https://www.toshin.com/kyotsutest/2023/butsuri-kiso_question_0.html",
+    "化学基礎":             "https://www.toshin.com/kyotsutest/2023/kagaku-kiso_question_0.html",
+    "生物基礎":             "https://www.toshin.com/kyotsutest/2023/seibutsu-kiso_question_0.html",
+    "地学基礎":             "https://www.toshin.com/kyotsutest/2023/chigaku-kiso_question_0.html",
+    "物理":                 "https://www.toshin.com/kyotsutest/2023/butsuri_question_0.html",
+    "化学":                 "https://www.toshin.com/kyotsutest/2023/kagaku_question_0.html",
+    "生物":                 "https://www.toshin.com/kyotsutest/2023/seibutsu_question_0.html",
+    "地学":                 "https://www.toshin.com/kyotsutest/2023/chigaku_question_0.html",
+    "地理総合・地理探究":   "https://www.toshin.com/kyotsutest/2023/chiri-tankyu_question_0.html",
+    "歴史総合・日本史探究": "https://www.toshin.com/kyotsutest/2023/nihonshi-tankyu_question_0.html",
+    "歴史総合・世界史探究": "https://www.toshin.com/kyotsutest/2023/sekaishi-tankyu_question_0.html",
+  },
+  2022: {
+    "英語リーディング":     "https://www.toshin.com/kyotsutest/2022/reading_question_1.html",
+    "英語リスニング":       "https://www.toshin.com/kyotsutest/2022/listening_question_1.html",
+    "数学IA":               "https://www.toshin.com/kyotsutest/2022/suugaku-1a_question_1.html",
+    "数学IIB":              "https://www.toshin.com/kyotsutest/2022/suugaku2bc_question_1.html",
+    "国語":                 "https://www.toshin.com/kyotsutest/2022/kokugo_question_1.html",
+    "物理基礎":             "https://www.toshin.com/kyotsutest/2022/butsuri-kiso_question_0.html",
+    "化学基礎":             "https://www.toshin.com/kyotsutest/2022/kagaku-kiso_question_0.html",
+    "生物基礎":             "https://www.toshin.com/kyotsutest/2022/seibutsu-kiso_question_0.html",
+    "地学基礎":             "https://www.toshin.com/kyotsutest/2022/chigaku-kiso_question_0.html",
+    "物理":                 "https://www.toshin.com/kyotsutest/2022/butsuri_question_0.html",
+    "化学":                 "https://www.toshin.com/kyotsutest/2022/kagaku_question_0.html",
+    "生物":                 "https://www.toshin.com/kyotsutest/2022/seibutsu_question_0.html",
+    "地学":                 "https://www.toshin.com/kyotsutest/2022/chigaku_question_0.html",
+    "地理総合・地理探究":   "https://www.toshin.com/kyotsutest/2022/chiri-tankyu_question_0.html",
+    "歴史総合・日本史探究": "https://www.toshin.com/kyotsutest/2022/nihonshi-tankyu_question_0.html",
+    "歴史総合・世界史探究": "https://www.toshin.com/kyotsutest/2022/sekaishi-tankyu_question_0.html",
+  },
+  2021: {
+    "英語リーディング":     "https://www.toshin.com/kyotsutest/2021/reading_question_0.html",
+    "英語リスニング":       "https://www.toshin.com/kyotsutest/2021/listening_question_0.html",
+    "数学IA":               "https://www.toshin.com/kyotsutest/2021/suugaku-1a_question_0.html",
+    "数学IIB":              "https://www.toshin.com/kyotsutest/2021/suugaku2bc_question_0.html",
+    "国語":                 "https://www.toshin.com/kyotsutest/2021/kokugo_question_0.html",
+    "物理基礎":             "https://www.toshin.com/kyotsutest/2021/butsuri-kiso_question_0.html",
+    "化学基礎":             "https://www.toshin.com/kyotsutest/2021/kagaku-kiso_question_0.html",
+    "生物基礎":             "https://www.toshin.com/kyotsutest/2021/seibutsu-kiso_question_0.html",
+    "地学基礎":             "https://www.toshin.com/kyotsutest/2021/chigaku-kiso_question_0.html",
+    "物理":                 "https://www.toshin.com/kyotsutest/2021/butsuri_question_0.html",
+    "化学":                 "https://www.toshin.com/kyotsutest/2021/kagaku_question_0.html",
+    "生物":                 "https://www.toshin.com/kyotsutest/2021/seibutsu_question_0.html",
+    "地学":                 "https://www.toshin.com/kyotsutest/2021/chigaku_question_0.html",
+  },
+};
+
+// パスナビ 科目別URL（obunsha.co.jp）
+const PN_URLS: Record<string, string> = {
+  "英語リーディング":     "https://passnavi.obunsha.co.jp/kakomon/center/eigo/",
+  "英語リスニング":       "https://passnavi.obunsha.co.jp/kakomon/center/eigo/",
+  "数学IA":               "https://passnavi.obunsha.co.jp/kakomon/center/sugaku/",
+  "数学IIB":              "https://passnavi.obunsha.co.jp/kakomon/center/sugaku/",
+  "国語":                 "https://passnavi.obunsha.co.jp/kakomon/center/kokugo/",
+  "情報I":                "https://passnavi.obunsha.co.jp/kakomon/center/",
+  "物理基礎":             "https://passnavi.obunsha.co.jp/kakomon/center/butsuri/",
+  "化学基礎":             "https://passnavi.obunsha.co.jp/kakomon/center/kagaku/",
+  "生物基礎":             "https://passnavi.obunsha.co.jp/kakomon/center/seibutsu/",
+  "地学基礎":             "https://passnavi.obunsha.co.jp/kakomon/center/chigaku/",
+  "物理":                 "https://passnavi.obunsha.co.jp/kakomon/center/butsuri/",
+  "化学":                 "https://passnavi.obunsha.co.jp/kakomon/center/kagaku/",
+  "生物":                 "https://passnavi.obunsha.co.jp/kakomon/center/seibutsu/",
+  "地学":                 "https://passnavi.obunsha.co.jp/kakomon/center/chigaku/",
+  "地理総合・地理探究":   "https://passnavi.obunsha.co.jp/kakomon/center/chiri/",
+  "歴史総合・日本史探究": "https://passnavi.obunsha.co.jp/kakomon/center/chiri/",
+  "歴史総合・世界史探究": "https://passnavi.obunsha.co.jp/kakomon/center/chiri/",
+  "公共・倫理":           "https://passnavi.obunsha.co.jp/kakomon/center/rinri/",
+  "公共・政治経済":       "https://passnavi.obunsha.co.jp/kakomon/center/rinri/",
+};
+
 // パスナビ正規URL（obunsha.co.jp）
 const PN_BASE = "https://passnavi.obunsha.co.jp/kakomon/center/";
 
 const SUBJ_MASTER: Record<string, SubjMeta> = {
   "英語リーディング": { label: "英語（リーディング）", max: 100, group: "英語",
-    toshinKeys: { 2025: "reading_question_4", 2024: "reading_question_3", 2023: "reading_question_2", 2022: "reading_question_1", 2021: "reading_question_0" },
-    pnUrl: PN_BASE + "eigo/" },
+    toshinKeys: {}, pnUrl: PN_URLS["英語リーディング"] },
   "英語リスニング": { label: "英語（リスニング）", max: 100, group: "英語",
-    toshinKeys: { 2025: "listening_question_4", 2024: "listening_question_3", 2023: "listening_question_2", 2022: "listening_question_1", 2021: "listening_question_0" },
-    pnUrl: PN_BASE + "eigo/" },
+    toshinKeys: {}, pnUrl: PN_URLS["英語リスニング"] },
   "数学IA": { label: "数学ⅠA", max: 100, group: "数学",
-    toshinKeys: { 2025: "suugaku-1a_question_4", 2024: "suugaku-1a_question_3", 2023: "suugaku-1a_question_2", 2022: "suugaku-1a_question_1", 2021: "suugaku-1a_question_0" },
-    pnUrl: PN_BASE + "sugaku/" },
+    toshinKeys: {}, pnUrl: PN_URLS["数学IA"] },
   "数学IIB": { label: "数学ⅡBC", max: 100, group: "数学",
-    toshinKeys: { 2025: "suugaku2bc_question_4", 2024: "suugaku2bc_question_3", 2023: "suugaku2bc_question_2", 2022: "suugaku2bc_question_1", 2021: "suugaku2bc_question_0" },
-    pnUrl: PN_BASE + "sugaku/" },
+    toshinKeys: {}, pnUrl: PN_URLS["数学IIB"] },
   "国語": { label: "国語", max: 200, group: "国語",
-    toshinKeys: { 2025: "kokugo_question_4", 2024: "kokugo_question_3", 2023: "kokugo_question_2", 2022: "kokugo_question_1", 2021: "kokugo_question_0" },
-    pnUrl: PN_BASE + "kokugo/" },
+    toshinKeys: {}, pnUrl: PN_URLS["国語"] },
   "情報I": { label: "情報Ⅰ", max: 100, group: "情報",
-    toshinKeys: { 2025: "jouhou1_question_2", 2024: "jouhou1_question_1" },
-    pnUrl: PN_BASE },
+    toshinKeys: {}, pnUrl: PN_URLS["情報I"] },
   "物理基礎": { label: "物理基礎", max: 50, group: "理科（基礎）",
-    toshinKeys: { 2025: "butsuri-kiso_question_1", 2024: "butsuri-kiso_question_0", 2023: "butsuri-kiso_question_0", 2022: "butsuri-kiso_question_0" },
-    pnUrl: PN_BASE + "butsuri/" },
+    toshinKeys: {}, pnUrl: PN_URLS["物理基礎"] },
   "化学基礎": { label: "化学基礎", max: 50, group: "理科（基礎）",
-    toshinKeys: { 2025: "kagaku-kiso_question_1", 2024: "kagaku-kiso_question_0", 2023: "kagaku-kiso_question_0", 2022: "kagaku-kiso_question_0" },
-    pnUrl: PN_BASE + "kagaku/" },
+    toshinKeys: {}, pnUrl: PN_URLS["化学基礎"] },
   "生物基礎": { label: "生物基礎", max: 50, group: "理科（基礎）",
-    toshinKeys: { 2025: "seibutsu-kiso_question_1", 2024: "seibutsu-kiso_question_0", 2023: "seibutsu-kiso_question_0", 2022: "seibutsu-kiso_question_0" },
-    pnUrl: PN_BASE + "seibutsu/" },
+    toshinKeys: {}, pnUrl: PN_URLS["生物基礎"] },
   "地学基礎": { label: "地学基礎", max: 50, group: "理科（基礎）",
-    toshinKeys: { 2025: "chigaku-kiso_question_1", 2024: "chigaku-kiso_question_0", 2023: "chigaku-kiso_question_0", 2022: "chigaku-kiso_question_0" },
-    pnUrl: PN_BASE + "chigaku/" },
+    toshinKeys: {}, pnUrl: PN_URLS["地学基礎"] },
   "物理": { label: "物理", max: 100, group: "理科（発展）",
-    toshinKeys: { 2025: "butsuri_question_1", 2024: "butsuri_question_0", 2023: "butsuri_question_0", 2022: "butsuri_question_0" },
-    pnUrl: PN_BASE + "butsuri/" },
+    toshinKeys: {}, pnUrl: PN_URLS["物理"] },
   "化学": { label: "化学", max: 100, group: "理科（発展）",
-    toshinKeys: { 2025: "kagaku_question_1", 2024: "kagaku_question_0", 2023: "kagaku_question_0", 2022: "kagaku_question_0" },
-    pnUrl: PN_BASE + "kagaku/" },
+    toshinKeys: {}, pnUrl: PN_URLS["化学"] },
   "生物": { label: "生物", max: 100, group: "理科（発展）",
-    toshinKeys: { 2025: "seibutsu_question_1", 2024: "seibutsu_question_0", 2023: "seibutsu_question_0", 2022: "seibutsu_question_0" },
-    pnUrl: PN_BASE + "seibutsu/" },
+    toshinKeys: {}, pnUrl: PN_URLS["生物"] },
   "地学": { label: "地学", max: 100, group: "理科（発展）",
-    toshinKeys: { 2025: "chigaku_question_1", 2024: "chigaku_question_0", 2023: "chigaku_question_0", 2022: "chigaku_question_0" },
-    pnUrl: PN_BASE + "chigaku/" },
+    toshinKeys: {}, pnUrl: PN_URLS["地学"] },
   "地理総合・地理探究": { label: "地理総合、地理探究", max: 100, group: "地歴公民",
-    toshinKeys: { 2025: "chiri-tankyu_question_1", 2024: "chiri-tankyu_question_0", 2023: "chiri-tankyu_question_0" },
-    pnUrl: PN_BASE + "chiri/" },
+    toshinKeys: {}, pnUrl: PN_URLS["地理総合・地理探究"] },
   "歴史総合・日本史探究": { label: "歴史総合、日本史探究", max: 100, group: "地歴公民",
-    toshinKeys: { 2025: "nihonshi-tankyu_question_1", 2024: "nihonshi-tankyu_question_0", 2023: "nihonshi-tankyu_question_0" },
-    pnUrl: PN_BASE + "chiri/" },
+    toshinKeys: {}, pnUrl: PN_URLS["歴史総合・日本史探究"] },
   "歴史総合・世界史探究": { label: "歴史総合、世界史探究", max: 100, group: "地歴公民",
-    toshinKeys: { 2025: "sekaishi-tankyu_question_1", 2024: "sekaishi-tankyu_question_0", 2023: "sekaishi-tankyu_question_0" },
-    pnUrl: PN_BASE + "chiri/" },
+    toshinKeys: {}, pnUrl: PN_URLS["歴史総合・世界史探究"] },
   "公共・倫理": { label: "公共、倫理", max: 100, group: "地歴公民",
-    toshinKeys: { 2025: "koukyo-rinri_question_1", 2024: "koukyo-rinri_question_0" },
-    pnUrl: PN_BASE + "rinri/" },
+    toshinKeys: {}, pnUrl: PN_URLS["公共・倫理"] },
   "公共・政治経済": { label: "公共、政治・経済", max: 100, group: "地歴公民",
-    toshinKeys: { 2025: "koukyo-seikei_question_1", 2024: "koukyo-seikei_question_0" },
-    pnUrl: PN_BASE + "rinri/" },
+    toshinKeys: {}, pnUrl: PN_URLS["公共・政治経済"] },
 };
 
 const GROUP_COLOR: Record<string, string> = {
@@ -132,13 +236,13 @@ function clamp(v: number, lo = 0, hi = 100) { return Math.max(lo, Math.min(hi, v
 function todayStr() { return new Date().toISOString().slice(0, 10); }
 function monthStr() { return new Date().toISOString().slice(0, 7); }
 
+// DBから直接URLを引く（推測なし）
 function getToshinURL(key: string, year: number): string | null {
-  const m = SUBJ_MASTER[key];
-  if (!m) return null;
-  const qkey = m.toshinKeys[year];
-  if (!qkey) return null;
-  if (year === 2025) return `https://www.toshin.com/kyotsutest/2025/${qkey}.html`;
-  return `https://www.toshin.com/kyotsutest/${year}/${qkey}.html`;
+  return TOSHIN_URLS[year]?.[key] ?? null;
+}
+
+function getPnURL(key: string): string {
+  return PN_URLS[key] ?? PN_BASE;
 }
 
 function getLatest(scores: Record<string, ScoreEntry>, key: string): number | null {
@@ -365,7 +469,7 @@ export default function App() {
         {tab === "score"    && <ScoreTab S={S} update={update} getSubjs={getSubjs} />}
         {tab === "file"     && <FileTab S={S} getSubjs={getSubjs} />}
         {tab === "weak"     && <WeakTab S={S} update={update} />}
-        {tab === "plan"     && <PlanTab />}
+        {tab === "plan"     && <PlanTab logs={S.logs} />}
         {tab === "settings" && <SettingsTab S={S} update={update} getSubjs={getSubjs} />}
       </main>
     </div>
@@ -580,7 +684,7 @@ function ExamTab({ S, update, getSubjs }: { S: AppState; update: any; getSubjs: 
 
           <div style={{ marginBottom: 12 }}>
             <div style={{ fontSize: 10, color: "var(--t3)", fontWeight: 600, textTransform: "uppercase", letterSpacing: ".8px", marginBottom: 8 }}>📖 パスナビ — 解説付き過去問（5年分）</div>
-            <a className="lb pn" href={activeM.pnUrl} target="_blank" rel="noopener noreferrer">
+            <a className="lb pn" href={getPnURL(activeKey)} target="_blank" rel="noopener noreferrer">
               <div><div className="ln">パスナビ｜{activeM.label} 過去問（解説付き）</div><div className="ld2">解説・解答付き過去問</div></div>
               <div className="la">↗</div>
             </a>
@@ -1171,8 +1275,147 @@ function WeakTab({ S, update }: { S: AppState; update: any }) {
 // ════════════════════════════════════════
 // PLAN TAB
 // ════════════════════════════════════════
-function PlanTab() {
+function PlanTab({ logs }: { logs: LogEntry[] }) {
   const [activeDayType, setActiveDayType] = useState<"club" | "noclub">("club");
+
+  const dailyClub = [
+    { time: "〜部活前", act: "Flips起動（5分）英単語チェック" },
+    { time: "部活中（移動）", act: "リスニング音声を聴き流し" },
+    { time: "帰宅後", act: "休憩・食事を最優先" },
+    { time: "21:00〜", act: "余裕があれば問題1〜2問のみ" },
+    { time: "寝る前（5分）", act: "暗記系の復習・翌日の準備" },
+  ];
+  const dailyNoClub = [
+    { time: "午前中（〜12時）", act: "数学 or 理科 集中演習（60〜90分）" },
+    { time: "昼食・休憩", act: "Flips単語チェック（10分）" },
+    { time: "午後（13〜15時）", act: "英語 長文読解 or 文法（60分）" },
+    { time: "15〜17時", act: "苦手科目の問題集（60分）" },
+    { time: "夕食・休憩", act: "しっかり休む（脳を回復）" },
+    { time: "20〜22時", act: "今日の復習 + 明日の準備（60分）" },
+  ];
+
+  const studyTimeSummary = [
+    { phase: "Phase 1（部活期間）", club: "30〜60分/日", noClub: "3〜4時間/日", weekTotal: "10〜20時間" },
+    { phase: "Phase 2（夏休み）",   club: "—",           noClub: "5〜6時間/日", weekTotal: "35〜42時間" },
+    { phase: "Phase 3（秋）",       club: "—",           noClub: "4〜5時間/日", weekTotal: "28〜35時間" },
+    { phase: "Phase 4（直前）",     club: "—",           noClub: "6〜8時間/日", weekTotal: "42〜56時間" },
+  ];
+
+  const monthly = [
+    "Flipsで英単語100語以上をマスター",
+    "数ⅠAの基礎問題集を最低20問解く",
+    "AI問題タブで30問以上解く",
+    "学習記録を週5日以上つける",
+    "模試の目標スコアを設定タブに入力する",
+  ];
+
+  // 実績集計
+  const ym = monthStr();
+  const thisMonthMins = logs.filter(l => l.date.startsWith(ym)).reduce((a, l) => a + l.mins, 0);
+  const totalMins = logs.reduce((a, l) => a + l.mins, 0);
+  const bySubj: Record<string, number> = {};
+  logs.forEach(l => { bySubj[l.subject] = (bySubj[l.subject] || 0) + l.mins; });
+  const sortedSubj = Object.entries(bySubj).sort((a, b) => b[1] - a[1]);
+
+  return (
+    <div>
+      <div className="stitle">学習計画</div>
+      <div className="ssub">フェーズ別の総学習時間目標と実績・1日のスケジュール</div>
+
+      {/* 実績合計 */}
+      <div className="g2" style={{ marginBottom: 14 }}>
+        <div className="card" style={{ marginBottom: 0 }}>
+          <div className="ct">📊 今月の実績合計</div>
+          <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 32, color: "var(--gr)", margin: "8px 0 4px" }}>
+            {(thisMonthMins / 60).toFixed(1)}<span style={{ fontSize: 14, color: "var(--t2)", marginLeft: 4 }}>時間</span>
+          </div>
+          <div style={{ fontSize: 11, color: "var(--t2)", marginBottom: 12 }}>
+            累計 {(totalMins / 60).toFixed(1)}時間 / Phase 1目標: 週10〜20時間
+          </div>
+          <div className="bbg" style={{ height: 5, marginBottom: 12 }}>
+            <div className="bb g" style={{ width: `${clamp(thisMonthMins / (20*4*60) * 100)}%` }} />
+          </div>
+          {sortedSubj.slice(0, 5).map(([s, m]) => (
+            <div key={s} className="sr" style={{ padding: "5px 0" }}>
+              <span style={{ flex: 1, fontSize: 11 }}>{s}</span>
+              <div className="bbg" style={{ flex: 1, height: 3, margin: "0 8px" }}>
+                <div className="bb g" style={{ width: `${totalMins > 0 ? clamp(m / totalMins * 100) : 0}%` }} />
+              </div>
+              <span style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, color: "var(--t2)" }}>{(m / 60).toFixed(1)}h</span>
+            </div>
+          ))}
+          {!logs.length && <div style={{ color: "var(--t3)", fontSize: 12 }}>スコア記録タブで学習ログを入力すると表示されます</div>}
+        </div>
+
+        <div className="card" style={{ marginBottom: 0 }}>
+          <div className="ct">⏱️ フェーズ別 週の目標時間</div>
+          <div className="cs">現在はPhase 1 — 習慣化を最優先に</div>
+          {studyTimeSummary.map((r, i) => (
+            <div key={i} className="sr" style={{
+              padding: "8px 0",
+              background: i === 0 ? "var(--grd)" : "transparent",
+              margin: i === 0 ? "0 -4px" : "0",
+              padding: i === 0 ? "8px 4px" : "8px 0",
+              borderRadius: i === 0 ? "6px" : "0",
+            }}>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 12, fontWeight: i === 0 ? 700 : 400, color: i === 0 ? "var(--gr)" : "var(--t1)" }}>{r.phase}</div>
+                <div style={{ fontSize: 10, color: "var(--t3)" }}>部活なし {r.noClub}</div>
+              </div>
+              <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 13, color: i === 0 ? "var(--gr)" : "var(--t2)", fontWeight: 600 }}>
+                {r.weekTotal}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* タイムテーブル切替 */}
+      <div className="card">
+        <div className="ct">🗓️ 1日のタイムテーブル</div>
+        <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
+          <button className={`btn ${activeDayType === "club" ? "btn-g" : "btn-ghost"}`}
+            onClick={() => setActiveDayType("club")} style={{ flex: 1 }}>⚽ 部活がある日</button>
+          <button className={`btn ${activeDayType === "noclub" ? "btn-g" : "btn-ghost"}`}
+            onClick={() => setActiveDayType("noclub")} style={{ flex: 1 }}>📚 部活がない日</button>
+        </div>
+        {activeDayType === "club" ? (
+          <>
+            <div className="cs" style={{ marginBottom: 8 }}>疲れを前提に「ゼロにしない」が目標。無理は禁物。</div>
+            {dailyClub.map(r => (
+              <div key={r.time} className="sr">
+                <span style={{ minWidth: 110, fontSize: 11, fontFamily: "'DM Mono',monospace", color: "var(--t3)" }}>{r.time}</span>
+                <span style={{ fontSize: 12 }}>{r.act}</span>
+              </div>
+            ))}
+          </>
+        ) : (
+          <>
+            <div className="cs" style={{ marginBottom: 8 }}>部活なし日は3〜4時間が目標。集中とメリハリを意識。</div>
+            {dailyNoClub.map(r => (
+              <div key={r.time} className="sr">
+                <span style={{ minWidth: 110, fontSize: 11, fontFamily: "'DM Mono',monospace", color: "var(--bl)" }}>{r.time}</span>
+                <span style={{ fontSize: 12 }}>{r.act}</span>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
+
+      {/* 今月の目標 */}
+      <div className="card">
+        <div className="ct">📊 今月の目標チェック</div>
+        <div className="cs">今月達成したい目標リスト（Phase 1）</div>
+        {monthly.map(g => (
+          <div key={g} className="sr" style={{ padding: "8px 0" }}>
+            <span style={{ color: "var(--gr)", marginRight: 8 }}>›</span>
+            <span>{g}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
   const dailyClub = [
     { time: "〜部活前", act: "Flips起動（5分）英単語チェック" },
@@ -1291,18 +1534,78 @@ function PlanTab() {
 }
 
 // ════════════════════════════════════════
-// SETTINGS TAB
+// SUBJECT SELECTOR (独立コンポーネント - チェック即時反映)
 // ════════════════════════════════════════
+function SubjSelector({ selected, onChange }: { selected: string[]; onChange: (keys: string[]) => void }) {
+  const groups: Record<string, string[]> = {};
+  Object.entries(SUBJ_MASTER).forEach(([key, m]) => {
+    if (!groups[m.group]) groups[m.group] = [];
+    groups[m.group].push(key);
+  });
+
+  const toggle = (key: string) => {
+    const next = selected.includes(key)
+      ? selected.filter(k => k !== key)
+      : [...selected, key];
+    onChange(next);
+  };
+
+  const selectAll = () => onChange(Object.keys(SUBJ_MASTER));
+  const clearAll = () => onChange([]);
+
+  return (
+    <div>
+      <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
+        <button className="btn btn-ghost" style={{ fontSize: 11, padding: "5px 12px" }} onClick={selectAll}>全選択</button>
+        <button className="btn btn-ghost" style={{ fontSize: 11, padding: "5px 12px" }} onClick={clearAll}>全解除</button>
+        <span style={{ fontSize: 11, color: "var(--t3)", alignSelf: "center" }}>{selected.length}科目選択中</span>
+      </div>
+      {Object.entries(groups).map(([grp, keys]) => (
+        <div key={grp} style={{ marginBottom: 14 }}>
+          <div style={{ fontSize: 10, color: "var(--t3)", fontWeight: 600, textTransform: "uppercase", letterSpacing: ".8px", marginBottom: 6 }}>{grp}</div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+            {keys.map(key => {
+              const m = SUBJ_MASTER[key];
+              const checked = selected.includes(key);
+              return (
+                <button
+                  key={key}
+                  onClick={() => toggle(key)}
+                  style={{
+                    padding: "6px 14px",
+                    borderRadius: 99,
+                    border: `1px solid ${checked ? "var(--gr)88" : "var(--b2)"}`,
+                    background: checked ? "var(--grd)" : "transparent",
+                    color: checked ? "var(--gr)" : "var(--t3)",
+                    fontSize: 12,
+                    fontFamily: "'Noto Sans JP',sans-serif",
+                    cursor: "pointer",
+                    transition: "all .12s",
+                    WebkitTapHighlightColor: "transparent",
+                  }}
+                >
+                  {checked ? "✓ " : ""}{m.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 function SettingsTab({ S, update, getSubjs }: { S: AppState; update: any; getSubjs: () => string[] }) {
   const [school, setSchool] = useState(S.school);
   const [goalInputs, setGoalInputs] = useState<Record<string, string>>({});
-  // ローカルstate で即時チェック反映 → 保存ボタンでS反映
   const [localSelected, setLocalSelected] = useState<string[]>(S.selectedSubjs);
+  const [saved, setSaved] = useState(false);
 
-  const saveSettings = () => {
+  const saveAll = () => {
     update((prev: AppState) => ({ ...prev, school, selectedSubjs: localSelected }));
-    alert("✅ 設定を保存しました！");
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
   };
+
   const saveGoals = () => {
     update((prev: AppState) => {
       const goals = { ...prev.goals };
@@ -1320,24 +1623,11 @@ function SettingsTab({ S, update, getSubjs }: { S: AppState; update: any; getSub
     alert("✅ 目標スコアを保存しました！");
   };
 
-  // チェック操作はlocalStateだけ更新（即時・軽量）
-  const toggleSubj = (key: string) => {
-    setLocalSelected(prev =>
-      prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]
-    );
-  };
-
-  // Group subjects
-  const groups: Record<string, string[]> = {};
-  Object.entries(SUBJ_MASTER).forEach(([key, m]) => {
-    if (!groups[m.group]) groups[m.group] = [];
-    groups[m.group].push(key);
-  });
-
   return (
     <div>
       <div className="stitle">設定</div>
-      <div className="ssub">プロフィール・受験科目・目標スコアを設定します。選択科目は全タブに反映されます。</div>
+      <div className="ssub">プロフィール・受験科目・目標スコアを設定します。</div>
+
       <div className="g2">
         <div className="card">
           <div className="ct">👤 プロフィール</div>
@@ -1350,9 +1640,9 @@ function SettingsTab({ S, update, getSubjs }: { S: AppState; update: any; getSub
           ))}
           <div className="sr">
             <span style={{ flex: 1 }}>志望校</span>
-            <input type="text" value={school} onChange={e => setSchool(e.target.value)} placeholder="例: 琉球大学" style={{ maxWidth: 170, fontSize: 11, padding: "4px 7px" }} />
+            <input type="text" value={school} onChange={e => setSchool(e.target.value)}
+              placeholder="例: 琉球大学" style={{ maxWidth: 170, fontSize: 11, padding: "4px 7px" }} />
           </div>
-          <button className="btn btn-g" style={{ marginTop: 10 }} onClick={saveSettings}>保存</button>
         </div>
 
         <div className="card">
@@ -1360,28 +1650,36 @@ function SettingsTab({ S, update, getSubjs }: { S: AppState; update: any; getSub
           <div className="cs">Gemini APIキーを入力するとAI機能が拡張されます</div>
           <div style={{ marginBottom: 8 }}>
             <div className="fl">Google AI Studio APIキー</div>
-            <input
-              type="password"
-              placeholder="AIzaSy... （Google AI Studioで取得）"
-              style={{ fontSize: 11 }}
-              onChange={() => {}}
-            />
+            <input type="password" placeholder="AIzaSy... （Google AI Studioで取得）"
+              style={{ fontSize: 11 }} onChange={() => {}} />
           </div>
-          <a
-            href="https://aistudio.google.com/app/apikey"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ fontSize: 11, color: "var(--bl)", textDecoration: "none" }}
-          >
+          <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer"
+            style={{ fontSize: 11, color: "var(--bl)", textDecoration: "none" }}>
             → Google AI StudioでAPIキーを取得 ↗
           </a>
           <div style={{ marginTop: 10, padding: 10, background: "var(--s2)", borderRadius: "var(--rsm)", fontSize: 11, color: "var(--t3)" }}>
-            ※ 現在はAnthropicのClaude APIで動作中。Gemini APIの統合は今後実装予定。
+            ※ 現在はAnthropicのClaude APIで動作中。Gemini APIの統合は今後実装予定。<br/>
+            ※ Anthropic APIキーは <code>src/main.tsx</code> またはVercelの環境変数に設定してください。
           </div>
         </div>
       </div>
 
-      <div className="card" style={{ marginTop: 14 }}>
+      {/* 受験科目選択 - ボタン式で即時反映 */}
+      <div className="card">
+        <div className="ct">📋 受験科目の選択</div>
+        <div className="cs">タップで即時選択・解除。緑色ハイライトが選択中です。最後に「保存」してください。</div>
+        <SubjSelector selected={localSelected} onChange={setLocalSelected} />
+        <button
+          className="btn btn-g"
+          style={{ width: "100%", marginTop: 14, fontSize: 13, padding: "11px 0" }}
+          onClick={saveAll}
+        >
+          {saved ? "✅ 保存しました！全タブに反映済み" : "💾 設定を保存して全タブに反映"}
+        </button>
+      </div>
+
+      {/* 目標スコア */}
+      <div className="card">
         <div className="ct">🎯 目標スコア設定</div>
         <div className="cs">各科目の目標点を設定すると分析に反映（満点は科目別に自動設定）</div>
         {getSubjs().map(key => {
@@ -1389,50 +1687,16 @@ function SettingsTab({ S, update, getSubjs }: { S: AppState; update: any; getSub
           return (
             <div key={key} className="sr">
               <span style={{ flex: 1, fontSize: 11 }}>{m.label}</span>
-              <input type="text" value={goalInputs[key] ?? (S.goals[key] != null ? String(S.goals[key]) : "")} onChange={e => setGoalInputs(p => ({ ...p, [key]: e.target.value }))}
-                placeholder="—" style={{ width: 60, textAlign: "right", padding: "4px 6px", fontSize: 12, fontFamily: "'DM Mono',monospace" }} />
+              <input type="text"
+                value={goalInputs[key] ?? (S.goals[key] != null ? String(S.goals[key]) : "")}
+                onChange={e => setGoalInputs(p => ({ ...p, [key]: e.target.value }))}
+                placeholder="—"
+                style={{ width: 60, textAlign: "right", padding: "4px 6px", fontSize: 12, fontFamily: "'DM Mono',monospace" }} />
               <span style={{ fontSize: 10, color: "var(--t3)" }}>/{m.max}</span>
             </div>
           );
         })}
         <button className="btn btn-g" style={{ marginTop: 10 }} onClick={saveGoals}>保存</button>
-      </div>
-
-      <div className="card" style={{ marginTop: 14 }}>
-        <div className="ct">📋 受験科目の選択</div>
-        <div className="cs">
-          受験する科目にチェックを入れてください。
-          <span style={{ color: "var(--or)" }}>「保存」ボタンで全タブに反映されます。</span>
-        </div>
-        {Object.entries(groups).map(([grp, keys]) => (
-          <div key={grp} style={{ marginBottom: 14 }}>
-            <div style={{ fontSize: 10, color: "var(--t3)", fontWeight: 600, textTransform: "uppercase", letterSpacing: ".8px", marginBottom: 8 }}>{grp}</div>
-            {keys.map(key => {
-              const m = SUBJ_MASTER[key];
-              const checked = localSelected.includes(key);
-              return (
-                <div
-                  key={key}
-                  className="ci"
-                  onClick={() => toggleSubj(key)}
-                >
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    onChange={() => toggleSubj(key)}
-                    onClick={e => e.stopPropagation()}
-                  />
-                  <span style={{ color: checked ? "var(--t1)" : "var(--t3)" }}>
-                    {m.label}（満点 {m.max}点）
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        ))}
-        <button className="btn btn-g" style={{ width: "100%", marginTop: 8 }} onClick={saveSettings}>
-          ✅ 科目選択を保存して全タブに反映
-        </button>
       </div>
     </div>
   );
