@@ -92,9 +92,10 @@ const TOSHIN_URLS: Record<number, Record<string, string>> = {
     "化学":                 "https://www.toshin.com/kyotsutest/2023/kagaku_question_0.html",
     "生物":                 "https://www.toshin.com/kyotsutest/2023/seibutsu_question_0.html",
     "地学":                 "https://www.toshin.com/kyotsutest/2023/chigaku_question_0.html",
-    "地理総合・地理探究":   "https://www.toshin.com/kyotsutest/2023/chiri-tankyu_question_0.html",
-    "歴史総合・日本史探究": "https://www.toshin.com/kyotsutest/2023/nihonshi-tankyu_question_0.html",
-    "歴史総合・世界史探究": "https://www.toshin.com/kyotsutest/2023/sekaishi-tankyu_question_0.html",
+    // 2023年は旧課程（B科目）のURLを使用
+    "地理総合・地理探究":   "https://www.toshin.com/kyotsutest/2023/chiri-b_question_0.html",
+    "歴史総合・日本史探究": "https://www.toshin.com/kyotsutest/2023/nihonshi-b_question_0.html",
+    "歴史総合・世界史探究": "https://www.toshin.com/kyotsutest/2023/sekaishi-b_question_0.html",
   },
   2022: {
     "英語リーディング":     "https://www.toshin.com/kyotsutest/2022/reading_question_1.html",
@@ -110,9 +111,10 @@ const TOSHIN_URLS: Record<number, Record<string, string>> = {
     "化学":                 "https://www.toshin.com/kyotsutest/2022/kagaku_question_0.html",
     "生物":                 "https://www.toshin.com/kyotsutest/2022/seibutsu_question_0.html",
     "地学":                 "https://www.toshin.com/kyotsutest/2022/chigaku_question_0.html",
-    "地理総合・地理探究":   "https://www.toshin.com/kyotsutest/2022/chiri-tankyu_question_0.html",
-    "歴史総合・日本史探究": "https://www.toshin.com/kyotsutest/2022/nihonshi-tankyu_question_0.html",
-    "歴史総合・世界史探究": "https://www.toshin.com/kyotsutest/2022/sekaishi-tankyu_question_0.html",
+    // 2022年は旧課程（B科目）のURLを使用
+    "地理総合・地理探究":   "https://www.toshin.com/kyotsutest/2022/chiri-b_question_0.html",
+    "歴史総合・日本史探究": "https://www.toshin.com/kyotsutest/2022/nihonshi-b_question_0.html",
+    "歴史総合・世界史探究": "https://www.toshin.com/kyotsutest/2022/sekaishi-b_question_0.html",
   },
   2021: {
     "英語リーディング":     "https://www.toshin.com/kyotsutest/2021/reading_question_0.html",
@@ -128,6 +130,10 @@ const TOSHIN_URLS: Record<number, Record<string, string>> = {
     "化学":                 "https://www.toshin.com/kyotsutest/2021/kagaku_question_0.html",
     "生物":                 "https://www.toshin.com/kyotsutest/2021/seibutsu_question_0.html",
     "地学":                 "https://www.toshin.com/kyotsutest/2021/chigaku_question_0.html",
+    // 2021年も旧課程（B科目）のURLを使用
+    "地理総合・地理探究":   "https://www.toshin.com/kyotsutest/2021/chiri-b_question_0.html",
+    "歴史総合・日本史探究": "https://www.toshin.com/kyotsutest/2021/nihonshi-b_question_0.html",
+    "歴史総合・世界史探究": "https://www.toshin.com/kyotsutest/2021/sekaishi-b_question_0.html",
   },
 };
 
