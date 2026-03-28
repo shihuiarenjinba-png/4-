@@ -1358,7 +1358,6 @@ function PlanTab({ logs }: { logs: LogEntry[] }) {
           <div className="cs">現在はPhase 1 — 習慣化を最優先に</div>
           {studyTimeSummary.map((r, i) => (
             <div key={i} className="sr" style={{
-              padding: "8px 0",
               background: i === 0 ? "var(--grd)" : "transparent",
               margin: i === 0 ? "0 -4px" : "0",
               padding: i === 0 ? "8px 4px" : "8px 0",
